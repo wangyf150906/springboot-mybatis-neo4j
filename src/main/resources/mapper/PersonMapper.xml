@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hlxd.springboot_neo4j_demo.mapper.PersonMapper">
+
+<!--    自定义结果集-->
+    <resultMap id="personMap" type="com.hlxd.springboot_neo4j_demo.entity.Person">
+        <id column="id" property="id"/>
+        <result column="image" property="image"/>
+        <result column="名称" property="name"/>
+    </resultMap>
+
+    <select id="getAll" resultMap="personMap">
+        match
+            (p:`人员`)
+        return id(p) as id,p.image as image,p.名称 as name
+    </select>
+</mapper>
